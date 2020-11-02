@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset='utf-8'>
+  <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+  <title>FeedBack</title>
+  <meta name='viewport' content='width=device-width, initial-scale=1'>
+  <link rel='stylesheet' type='text/css' media='screen' href='/css/style.css'>
+  <link rel='stylesheet' type='text/css' media='screen' href='/css/feedback.css'>
+</head>
+<body>
+  <div id="background-fb"></div>
+  <div id="root">
+    <form>
+      <input id="email" placeholder="Digite seu email">
+      <input id="cellphone" placeholder="Digite seu celular">
+      <textarea id="feedback" placeholder="Digite seu feedback">aaaaaaaaa</textarea>
+      <button>Enviar</button>
+    </form>
+  </div>
+</body>
+<script>
+
+  async function sendFeedBack(body){
+    try {
+      const response = await fetch('http://localhost:3333',{ method:'POST', body: body, headers: {'Content-Type': 'application/json'} })
+      console.log(response)
+    } catch (error) {
+      console.log(error)
+    }
+  } 
+
+  const button = document.querySelector('button');
+
+  
+  button.addEventListener('click', (event) =>{
+    event.preventDefault();
+
+    const email = document.querySelector('#email')?.value;
+    const cellphone = document.querySelector('#cellphone')?.value;
+    const feedback = document.querySelector('#feedback')?.value;
+
+    sendFeedBack({email, cellphone, feedback});
+  })
+
+</script>
+</html>

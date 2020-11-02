@@ -1,1 +1,1 @@
-### Projeto FriendBot - Game BMO
+### Projeto FriendBot 

@@ -1,0 +1,110 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto");
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+#root {
+  height: 100%;
+  width: 100vw;
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  top: 0;
+  margin: auto;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+#background {
+  height: 100vh;
+  width: 100vw;
+  filter: blur(0.5rem);
+  -webkit-filter: blur(0.5rem);
+  background-repeat: no-repeat;
+  background-size: 90vw;
+  background-color: #b0fc62;
+  background-position: center center;
+}
+
+#menu {
+  min-height: 3.125rem;
+  flex-direction: column;
+  width: 30rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#menu > * {
+  margin-top: 1.25rem;
+}
+
+.default-card {
+  padding: 0.625rem 2.5rem;
+  width: 24rem;
+  font-family: Roboto;
+  font-weight: bold;
+  font-size: 1.75rem;
+  text-align: center;
+  box-sizing: border-box;
+  text-transform: uppercase;
+  background: #ffffff;
+  box-shadow: 0rem 0.625rem 0.25rem rgba(0, 0, 0, 0.25);
+  border-radius: 3.125rem;
+}
+
+#game-container {
+  height: 100vh;
+  width: 100%;
+  padding-top: 10vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.button {
+  cursor: pointer;
+  outline: none;
+}
+
+.option-box {
+  height: 6.25rem;
+}
+
+.options-container {
+  display: flex;
+  flex-direction: row;
+  width: 31.25rem;
+  height: 25rem;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.option {
+  margin: 0.625rem;
+  height: 11.25rem;
+  width: 11.25rem;
+  border-radius: 1.25rem;
+  font-size: 3.125rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#hud {
+  display: flex;
+  flex-direction: row;
+}
+
+@media only screen and (max-width: 1100px) {
+  .default-card {
+    width: 90vw;
+    padding: 2vh;
+    font-size: 4vh;
+  }
+}

@@ -1,2 +1,4 @@
-# Node.js
+#Depenedecies
+
 node_modules/
+*.lock
