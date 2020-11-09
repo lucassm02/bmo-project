@@ -1,22 +1,9 @@
-const express = require('express');
-const Feedback = require('./dao/Feedback');
-const routes = express.Router();
-const feedback = new Feedback();
+import { Router } from 'express';
+import Feedback from './controller/Feedback.js';
 
+const routes = Router();
 
-// routes.post('/suporte-usuario', (req, res) => {
-//     const idConsumidor = req.body.idConsumidor;
-//     const token = req.body.token;
+routes.get('/feedbacks', Feedback.index);
+routes.post('/feedbacks', Feedback.store);
 
-//     const Fee = new Feedback();
-//     // authUser.buscarConsumidor()
-       
-// });
-
-routes.get("/feedbacks", feedback.findAll)
-
-routes.post("/feedbacks",feedback.create)
-
-
-
-module.exports = routes;
+export default routes;

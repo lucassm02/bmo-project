@@ -1,16 +1,14 @@
-const events = require("events");
-events.EventEmitter.defaultMaxListeners = 20;
-const express = require("express");
-const cors = require("cors");
-
-const routes = require("./routes");
+import express from 'express';
+import cors from 'cors';
+import routes from './routes';
 
 const app = express();
-const server = require("http").Server(app);
 
 app.use(cors());
 
 app.use(express.json());
 app.use(routes);
 
-server.listen(3333);
+app.listen(3333, (data) => {
+  console.log(data);
+});
