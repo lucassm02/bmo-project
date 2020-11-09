@@ -1,0 +1,18 @@
+version: "3.3"
+services:
+  api:
+    image: "node:14.15.0"
+    working_dir: /api
+    volumes:
+      - ./api:/app
+    command: bash -c "yarn"
+    ports:
+      - "${API_PORT}:${API_PORT}"
+  frontend:
+    image: "node:14.15.0"
+    working_dir: /front
+    volumes:
+      - ./frontend:/frontend
+    command: bash -c "yarn"
+    ports:
+      - "${FRONT_PORT}:${FRONT_PORT}"
