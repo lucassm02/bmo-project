@@ -11,36 +11,58 @@
 <body>
   <div id="background-fb"></div>
   <div id="root">
+    <div class="form-container">
+      <h1>Envie nós seu feedback!</h1>
     <form>
-      <input id="email" placeholder="Digite seu email">
-      <input id="cellphone" placeholder="Digite seu celular">
-      <textarea id="feedback" placeholder="Digite seu feedback">aaaaaaaaa</textarea>
+      <textarea name="feedback" placeholder="Digite seu feedback"></textarea>
+      <div class="star-rating">
+        <input type="radio" id="5-stars" name="stars" value="5" />
+        <label for="5-stars" class="star">&#9733;</label>
+        <input type="radio" id="4-stars" name="stars" value="4" />
+        <label for="4-stars" class="star">&#9733;</label>
+        <input type="radio" id="3-stars" name="stars" value="3" />
+        <label for="3-stars" class="star">&#9733;</label>
+        <input type="radio" id="2-stars" name="stars" value="2" />
+        <label for="2-stars" class="star">&#9733;</label>
+        <input type="radio" id="1-star" name="stars" value="1" />
+        <label for="1-star" class="star">&#9733;</label>
+      </div>
       <button>Enviar</button>
     </form>
+    </div>
+    
   </div>
 </body>
 <script>
 
   async function sendFeedBack(body){
+
     try {
-      const response = await fetch('http://localhost:3333',{ method:'POST', body: body, headers: {'Content-Type': 'application/json'} })
-      console.log(response)
-    } catch (error) {
-      console.log(error)
-    }
-  } 
+      const rawResponse = await fetch('http://localhost:3001/feedbacks', {
+        method: 'POST',
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(body)
+    });
+
+    const content = await rawResponse.json();
+    alert('Feedback inserido com sucesso!')
+  } catch (error) {
+    alert('Desculpe, não foi possível inserir seu feedback!')
+  }
+} 
 
   const button = document.querySelector('button');
-
   
   button.addEventListener('click', (event) =>{
     event.preventDefault();
 
-    const email = document.querySelector('#email')?.value;
-    const cellphone = document.querySelector('#cellphone')?.value;
-    const feedback = document.querySelector('#feedback')?.value;
+    const form = document.querySelector('form');
+    const data = Object.fromEntries(new FormData(form).entries());
 
-    sendFeedBack({email, cellphone, feedback});
+    sendFeedBack(data);
   })
 
 </script>

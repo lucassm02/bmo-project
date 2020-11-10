@@ -56,7 +56,7 @@ function startScreen() {
 
   const startButton = createButton({
     value: "Iniciar",
-    action: () => renderScreen("menu"),
+    action: () => renderScreen("menu")
   });
 
   gameTitle.setAttribute("src", "assets/screens/home/game_name.png");
@@ -78,36 +78,40 @@ function selectLevelScreen() {
 
   menu.append(
     createButton({
+      value: "Enviar feedback",
+      action: () => {
+        window.location.href = "feedback.html";
+      }
+    })
+  );
+
+  menu.append(
+    createButton({
+      value: "Ir para o Jogo",
+      action: () => {
+        window.location.href = "bmo-adventure/";
+      }
+    })
+  );
+
+  menu.append(
+    createButton({
       value: "Amiga Matemática",
-      action: () => renderScreen("mathFriend"),
+      action: () => renderScreen("mathFriend")
     })
   );
 
   menu.append(
     createButton({
-      value: "O que é o que é?",
-      action: () => renderScreen("menu"),
+      value: " 🔒  O que é o que é?",
+      action: () => {}
     })
   );
 
   menu.append(
     createButton({
-      value: "O que é o que é?",
-      action: () => renderScreen("menu"),
-    })
-  );
-
-  menu.append(
-    createButton({
-      value: "O que é o que é?",
-      action: () => renderScreen("menu"),
-    })
-  );
-
-  menu.append(
-    createButton({
-      value: "O que é o que é?",
-      action: () => renderScreen("menu"),
+      value: "🔒  O que é o que é?",
+      action: () => {}
     })
   );
 }
@@ -145,7 +149,7 @@ function levelOneScreen() {
   title.style.cssText = "margin-top:20px; align-self:center";
 
   const challengeBox = createTextBox({
-    value: `${baseNumber1} + ${baseNumber2} = ?`,
+    value: `${baseNumber1} + ${baseNumber2} = ?`
   });
 
   challengeBox.style.cssText =
@@ -158,15 +162,15 @@ function levelOneScreen() {
 
   const randomValues = getValuesFromOptions({
     value1: baseNumber1,
-    value2: baseNumber2,
+    value2: baseNumber2
   });
 
-  randomValues.forEach((value) => {
+  randomValues.forEach(value => {
     optionsContainer.append(
       createButton({
         value,
         className: "option",
-        action: (event) => checkAlternative(event.target.innerHTML),
+        action: event => checkAlternative(event.target.innerHTML)
       })
     );
   });
