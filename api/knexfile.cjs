@@ -1,13 +1,15 @@
 // Update with your config settings.
+const path = require('path');
+require('dotenv').config({ path: path.resolve(__dirname, '.env') });
 
 module.exports = {
   development: {
     client: 'mysql',
     connection: {
-      host: '127.0.0.1',
-      user: 'your_database_user',
-      password: 'your_database_password',
-      database: 'myapp_test',
+      host: process.env.DB_HOST,
+      user: process.env.DB_USER,
+      password: process.env.DB_PASS,
+      database: process.env.DB_NAME,
     },
     migrations: {
       directory: './db/migrations',
@@ -18,9 +20,10 @@ module.exports = {
   staging: {
     client: 'mysql',
     connection: {
-      database: 'my_db',
-      user: 'username',
-      password: 'password',
+      host: process.env.DB_HOST,
+      user: process.env.DB_USER,
+      password: process.env.DB_PASS,
+      database: process.env.DB_NAME,
     },
     pool: {
       min: 2,
@@ -35,9 +38,10 @@ module.exports = {
   production: {
     client: 'mysql',
     connection: {
-      database: 'my_db',
-      user: 'username',
-      password: 'password',
+      host: process.env.DB_HOST,
+      user: process.env.DB_USER,
+      password: process.env.DB_PASS,
+      database: process.env.DB_NAME,
     },
     pool: {
       min: 2,

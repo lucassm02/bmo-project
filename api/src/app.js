@@ -8,7 +8,7 @@ import routes from './routes.js';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
-config({ path: path.resolve(__dirname, '..', '..', '.env') });
+config({ path: path.resolve(__dirname, '..', '.env') });
 
 const app = express();
 

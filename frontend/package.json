@@ -2,9 +2,10 @@
   "author": "Equipe Adventure - FIAP 2020",
   "description": "Jogos feitos com Phaser para finalização do projeto BMO da FIAP.",
   "main": "index.html",
-  "name": "gameBMO",
+  "name": "bmo-dashboard",
   "scripts": {
-    "start": "node server.js"
+    "start": "node server.js",
+    "dev": "nodemon server.js"
   },
   "version": "0.2.0",
   "dependencies": {
