@@ -48,9 +48,12 @@
     });
 
     const content = await rawResponse.json();
-    alert('Feedback inserido com sucesso!')
+    alert('Obrigado por enviar seu feedback!')
+    
+    window.location.href = 'http://localhost:3000'
+
   } catch (error) {
-    alert('Desculpe, não foi possível inserir seu feedback!')
+    alert('Desculpe, não foi possível enviar seu feedback!')
   }
 } 
 

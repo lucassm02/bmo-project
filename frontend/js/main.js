@@ -110,7 +110,7 @@ function selectLevelScreen() {
 
   menu.append(
     createButton({
-      value: "🔒  O que é o que é?",
+      value: "🔒  Que animal é esse?",
       action: () => {}
     })
   );
@@ -139,7 +139,7 @@ function levelOneScreen() {
       renderScreen("mathFriend");
       return alert("Parabéns você acertou! :)");
     }
-    return alert("Que triste, você errou! :(");
+    return alert("Ops, resposta errada. Tente novamente!");
   }
 
   root.innerHTML = "";
@@ -165,12 +165,12 @@ function levelOneScreen() {
     value2: baseNumber2
   });
 
-  randomValues.forEach(value => {
+  randomValues.forEach((value) => {
     optionsContainer.append(
       createButton({
         value,
         className: "option",
-        action: event => checkAlternative(event.target.innerHTML)
+        action: (event) => checkAlternative(event.target.innerHTML)
       })
     );
   });

@@ -16,10 +16,10 @@ var cena1 = new Phaser.Scene("Cena 1");
 cena1.preload = function() {
   this.load.image("sky", "assets/sky.png");
   this.load.image("ground", "assets/platform.png");
-  this.load.image("star", "assets/star.png");
+  this.load.image("batery", "assets/batery.png");
   this.load.image("bomb", "assets/bomb.png");
 
-  this.load.spritesheet("dude", "assets/dude.png", {
+  this.load.spritesheet("bmo", "assets/bmo.png", {
     frameWidth: 32,
     frameHeight: 48
   });
@@ -44,35 +44,28 @@ cena1.preload = function() {
 };
 
 cena1.create = function() {
-  //  A simple background for our game
+  //  BG 
   this.add.image(400, 300, "sky");
 
-  //  The platforms group contains the ground and the 2 ledges we can jump on
   platforms = this.physics.add.staticGroup();
 
-  //  Here we create the ground.
-  //  Scale it to fit the width of the game (the original sprite is 400x32 in size)
   platforms
     .create(400, 568, "ground")
     .setScale(2)
     .refreshBody();
 
-  //  Now let's create some ledges
   platforms.create(600, 400, "ground");
   platforms.create(50, 250, "ground");
   platforms.create(750, 220, "ground");
 
-  // The player and its settings
-  player = this.physics.add.sprite(100, 450, "dude");
+  player = this.physics.add.sprite(100, 450, "bmo");
 
-  //  Player physics properties. Give the little guy a slight bounce.
   player.setBounce(0.2);
   player.setCollideWorldBounds(true);
 
-  //  Our player animations, turning, walking left and walking right.
   this.anims.create({
     key: "left",
-    frames: this.anims.generateFrameNumbers("dude", {
+    frames: this.anims.generateFrameNumbers("bmo", {
       start: 0,
       end: 3
     }),
@@ -84,7 +77,7 @@ cena1.create = function() {
     key: "turn",
     frames: [
       {
-        key: "dude",
+        key: "bmo",
         frame: 4
       }
     ],
@@ -93,7 +86,7 @@ cena1.create = function() {
 
   this.anims.create({
     key: "right",
-    frames: this.anims.generateFrameNumbers("dude", {
+    frames: this.anims.generateFrameNumbers("bmo", {
       start: 5,
       end: 8
     }),
@@ -101,15 +94,12 @@ cena1.create = function() {
     repeat: -1
   });
 
-  //  Input Events
-  // Keyboard
+ 
   cursors = this.input.keyboard.createCursorKeys();
-  // Touch
   pointer = this.input.addPointer(1);
 
-  //  Some stars to collect, 12 in total, evenly spaced 70 pixels apart along the x axis
   stars = this.physics.add.group({
-    key: "star",
+    key: "batery",
     repeat: 11,
     setXY: {
       x: 12,
@@ -119,24 +109,20 @@ cena1.create = function() {
   });
 
   stars.children.iterate(function(child) {
-    //  Give each star a slightly different bounce
     child.setBounceY(Phaser.Math.FloatBetween(0.4, 0.8));
   });
 
   bombs = this.physics.add.group();
 
-  //  The score
   scoreText = this.add.text(16, 16, "score: 0", {
     fontSize: "32px",
     fill: "#000"
   });
 
-  //  Collide the player and the stars with the platforms
   this.physics.add.collider(player, platforms);
   this.physics.add.collider(stars, platforms);
   this.physics.add.collider(bombs, platforms);
 
-  //  Checks to see if the player overlaps with any of the stars, if he does call the collectStar function
   this.physics.add.overlap(player, stars, collectStar, null, this);
 
   this.physics.add.collider(player, bombs, hitBomb, null, this);
@@ -230,15 +216,14 @@ cena1.create = function() {
 
 cena1.update = function() {};
 
-function collectStar(player, star) {
-  star.disableBody(true, true);
+function collectStar(player, batery) {
+  batery.disableBody(true, true);
 
-  //  Add and update the score
+  //  Adiciona e atualiza score
   score += 10;
   scoreText.setText("Score: " + score);
 
   if (stars.countActive(true) === 0) {
-    //  A new batch of stars to collect
     stars.children.iterate(function(child) {
       child.enableBody(true, child.x, 0, true, true);
     });
